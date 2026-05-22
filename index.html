@@ -993,7 +993,7 @@ tbody tr:hover td { background: #FDFAF7; }
     <div style="background:linear-gradient(135deg,#1A1713 0%,#2D2420 100%);border-radius:var(--radius-lg);padding:28px;text-align:left;color:white;margin-bottom:24px;">
       <div style="font-size:10px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:600;">⚡ Action required</div>
       <h3 style="font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:20px;">Send Payment Now</h3>
-      <p style="font-size:13px;color:#C8B8A0;margin-bottom:20px;line-height:1.6;">To begin your wholesale order, please send payment via Mobile Money to <b>0784346929</b> (Ivan Art Furniture). Then click below to confirm via WhatsApp.</p>
+      <p style="font-size:13px;color:#C8B8A0;margin-bottom:20px;line-height:1.6;">To begin your wholesale order, please send payment via Mobile Money to <b>25250784346929</b> (Ivan Art Furniture). Then click below to confirm via WhatsApp.</p>
       <button onclick="confirmPaymentWA()" style="width:100%;background:#25D366;color:white;border:none;padding:15px;border-radius:var(--radius);font-size:14px;font-weight:700;cursor:pointer;"><i class="fab fa-whatsapp"></i> Confirm Payment on WhatsApp</button>
     </div>
 
@@ -1400,7 +1400,7 @@ tbody tr:hover td { background: #FDFAF7; }
       {id:2, image:'https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&w=600&q=80', emoji:'🧽', name:'Cleaning Supplies Bundle', mainCat:'Household Goods', subCat:'Cleaning Supplies', price:4500000, badge:'Popular', desc:'Wholesale cleaning supplies bundle for shops, offices, and hospitality buyers.'},
       {id:3, image:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80', emoji:'📦', name:'Retail Storage Goods', mainCat:'Household Goods', subCat:'Storage', price:980000, badge:'New', desc:'Organized household storage products available for bulk inquiry and supply.'},
       {id:4, image:'https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=600&q=80', emoji:'🔌', name:'Small Electronics Stock', mainCat:'Wholesale Stock', subCat:'Electronics', price:2200000, desc:'Wholesale small electronics and household electrical items for retail buyers.'},
-      {id:5, image:'https://images.unsplash.com/photo-1607843499294-0a96f2a4b9da?auto=format&fit=crop&w=600&q=80', emoji:'🏠', name:'Home Essentials Lot', mainCat:'Household Goods', subCat:'Home Essentials', price:1350000, oldPrice:1600000, badge:'Sale', desc:'Fast-moving household essentials supplied in bulk for Kigali retailers.'},
+      {id:5, image:'https://images.unsplash.com/photo-16252507843469294-0a96f2a4b9da?auto=format&fit=crop&w=600&q=80', emoji:'🏠', name:'Home Essentials Lot', mainCat:'Household Goods', subCat:'Home Essentials', price:1350000, oldPrice:1600000, badge:'Sale', desc:'Fast-moving household essentials supplied in bulk for Kigali retailers.'},
       {id:6, image:'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80', emoji:'📦', name:'Bulk Retail Package', mainCat:'Wholesale Stock', subCat:'Bulk Packages', price:1100000, desc:'Pre-arranged bulk package for retail stores and procurement managers.'}
     ];
     defaultProds.forEach(p => setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', p.id.toString()), p));
@@ -1703,8 +1703,22 @@ tbody tr:hover td { background: #FDFAF7; }
   function bookNow(id) {
     const p = window.appData.products.find(x => x.id == id);
     const productName = p ? p.name : 'this product';
-    const msg = encodeURIComponent(`Hello Ivan Art Furniture, I want to book: ${productName}`);
-    window.open('https://wa.me/250784346929?text=' + msg, '_blank');
+    const productImage = p && p.image ? p.image : '';
+
+    let message = `Hello Ivan Art Furniture, I want to book: ${productName}`;
+
+    if(productImage) {
+      message += `
+
+Product image: ${productImage}`;
+    }
+
+    message += `
+
+Please send me more information.`;
+
+    const msg = encodeURIComponent(message);
+    window.open('https://wa.me/25250784346929?text=' + msg, '_blank');
   }
 
   function addToCartQty(id) {
@@ -1860,7 +1874,7 @@ tbody tr:hover td { background: #FDFAF7; }
     const order = window._lastOrder;
     if(!order) return;
     const msg = `Hi Ivan Art Furniture, I have placed order ${order.ref} for ${fmt(order.total)}. I am sending the payment via ${order.pay}. Please confirm.`;
-    window.open(`https://wa.me/250784349929?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/25250784346929?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
   function trackOrder() {
